@@ -20,6 +20,7 @@ namespace Miskato_Blog.Services
         public async Task<Post?> GetAsync(string id) => await _postsCollection.Find(p => p.Id == id).FirstOrDefaultAsync();
         public async Task InsertAsync(Post post) => await _postsCollection.InsertOneAsync(post);
         public async Task UpdateAsync(string id, Post post) => await _postsCollection.FindOneAndReplaceAsync(p => p.Id == id, post);
+        // public async Task PushCommentAsync
         public async Task RemoveAsync(string id) => await _postsCollection.DeleteOneAsync(p => p.Id == id);
 
 

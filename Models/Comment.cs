@@ -12,9 +12,11 @@ namespace Miskato_Blog.Models
         [BsonRepresentation(BsonType.ObjectId)]
         public string UserId { get; set; } = null!;
 
-        [BsonElement("Content")]
+
         public string HtmlContent { get; set; } = null!;
 
-        public Comment[] Comments { get; set; } = null!;
+        public List<Comment> Comments { get; set; } = new List<Comment>();
+
+
     }
 }
