@@ -32,3 +32,16 @@ C:\Users\divah_000\Desktop\ASPNET\Miskato_Blog\obj\Debug\net6.0\Miskato_Blog.dll
 C:\Users\divah_000\Desktop\ASPNET\Miskato_Blog\obj\Debug\net6.0\ref\Miskato_Blog.dll
 C:\Users\divah_000\Desktop\ASPNET\Miskato_Blog\obj\Debug\net6.0\Miskato_Blog.pdb
 C:\Users\divah_000\Desktop\ASPNET\Miskato_Blog\obj\Debug\net6.0\Miskato_Blog.genruntimeconfig.cache
+C:\Users\divah_000\Desktop\ASPNET\Miskato_Blog\bin\Debug\net6.0\AWSSDK.Core.dll
+C:\Users\divah_000\Desktop\ASPNET\Miskato_Blog\bin\Debug\net6.0\AWSSDK.SecurityToken.dll
+C:\Users\divah_000\Desktop\ASPNET\Miskato_Blog\bin\Debug\net6.0\DnsClient.dll
+C:\Users\divah_000\Desktop\ASPNET\Miskato_Blog\bin\Debug\net6.0\MongoDB.Bson.dll
+C:\Users\divah_000\Desktop\ASPNET\Miskato_Blog\bin\Debug\net6.0\MongoDB.Driver.dll
+C:\Users\divah_000\Desktop\ASPNET\Miskato_Blog\bin\Debug\net6.0\MongoDB.Driver.Core.dll
+C:\Users\divah_000\Desktop\ASPNET\Miskato_Blog\bin\Debug\net6.0\MongoDB.Libmongocrypt.dll
+C:\Users\divah_000\Desktop\ASPNET\Miskato_Blog\bin\Debug\net6.0\SharpCompress.dll
+C:\Users\divah_000\Desktop\ASPNET\Miskato_Blog\bin\Debug\net6.0\Snappier.dll
+C:\Users\divah_000\Desktop\ASPNET\Miskato_Blog\bin\Debug\net6.0\ZstdSharp.dll
+C:\Users\divah_000\Desktop\ASPNET\Miskato_Blog\bin\Debug\net6.0\runtimes\linux\native\libmongocrypt.so
+C:\Users\divah_000\Desktop\ASPNET\Miskato_Blog\bin\Debug\net6.0\runtimes\osx\native\libmongocrypt.dylib
+C:\Users\divah_000\Desktop\ASPNET\Miskato_Blog\bin\Debug\net6.0\runtimes\win\native\mongocrypt.dll
