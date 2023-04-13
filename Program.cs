@@ -31,6 +31,7 @@ builder.Services.AddAuthorization(options =>
 });
 
 builder.Services.AddSingleton<PostsService>();
+builder.Services.AddSingleton<CommentsService>();
 builder.Services.AddSingleton<IAuthorizationHandler, HasScopeHandler>();
 var app = builder.Build();
 // Configure the HTTP request pipeline.

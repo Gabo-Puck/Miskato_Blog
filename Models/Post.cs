@@ -16,12 +16,11 @@ namespace Miskato_Blog.Models
 
         public User? Author { get; set; }
 
-        public IEnumerable<Comment> Comments { get; set; } = new List<Comment>()
-;
-        public Post()
-        {
-            Comments = new List<Comment>();
-        }
+        // [BsonIgnore]
+
+        public Comment[] Comments { get; set; } = null!;
+
+
 
     }
 }
