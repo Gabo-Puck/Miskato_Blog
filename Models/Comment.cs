@@ -15,7 +15,9 @@ namespace Miskato_Blog.Models
         [BsonRepresentation(BsonType.ObjectId)]
         public string? ParentCommentId { get; set; }
         [BsonRepresentation(BsonType.ObjectId)]
-        public string? PostId { get; set; } = null!;
+        public string PostId { get; set; } = null!;
+
+        public DateTime CreatedAt { get; set; }
 
 
     }

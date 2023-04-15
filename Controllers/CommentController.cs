@@ -35,6 +35,7 @@ namespace Miskato_Blog.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(Comment comment)
         {
+            comment.CreatedAt = DateTime.UtcNow;
             var post = await _postsService.GetAsync(comment.PostId);
             if (post is null)
                 return NotFound();
