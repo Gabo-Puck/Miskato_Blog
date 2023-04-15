@@ -16,9 +16,11 @@ namespace Miskato_Blog.Models
 
         public User? Author { get; set; }
 
-        // [BsonIgnore]
+        public DateTime CreatedAt { get; set; }
 
         public Comment[] Comments { get; set; } = null!;
+
+
 
 
 
