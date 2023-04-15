@@ -9,6 +9,25 @@ namespace Miskato_Blog.Services
     {
         private readonly IMongoCollection<Post> _postsCollection;
 
+        private BsonDocument LookupStage { get; } =
+            new BsonDocument{
+                            {
+                                "$addFields", new BsonDocument{
+                                    {
+                                        "Comments", new BsonDocument{
+                                            {"$filter", new BsonDocument{
+                                                {"input","$Comments"},
+                                                {"as","item"},
+                                                {"cond",new BsonDocument{
+                                                    {"$eq",new BsonArray{"$$item.ParentCommentId",BsonNull.Value}}
+                                                }}
+                                            }}
+                                    }
+                                    }
+                                }
+                            }
+                        };
+
         public PostsService(IOptions<MiskatoBlogMongoSettings> miskatoBlogMongoSettings)
         {
             var mongoClient = new MongoClient(miskatoBlogMongoSettings.Value.ConnectionString);
@@ -22,50 +41,16 @@ namespace Miskato_Blog.Services
             _postsCollection
             .Aggregate()
             .Lookup("comments", "_id", "PostId", "Comments")
-            .AppendStage<Post>(
-                new BsonDocument{
-                    {
-                        "$addFields", new BsonDocument{
-                            {
-                                "Comments", new BsonDocument{
-                                    {"$filter", new BsonDocument{
-                                        {"input","$Comments"},
-                                        {"as","item"},
-                                        {"cond",new BsonDocument{
-                                            {"$eq",new BsonArray{"$$item.ParentCommentId",BsonNull.Value}}
-                                        }}
-                                    }}
-                            }
-                            }
-                        }
-                    }
-                }
-            ).ToListAsync();
+            .AppendStage<Post>(LookupStage)
+            .ToListAsync();
 
-        public async Task<Post?> GetAsync(string id) => await
+        public async Task<long> Count() => await _postsCollection.CountDocumentsAsync(_ => true);
+
+        public async Task<Post?> GetAsync(string id) => await _postsCollection.Aggregate().Match(p => p.Id == id).AppendStage<Post>(LookupStage).FirstOrDefaultAsync();
+        public async Task<List<Post>> GetAsync(PipelineDefinition<Post, Post> pipeline) => await
             _postsCollection.
-            Aggregate()
-            .Match(new BsonDocument { { "_id", new BsonObjectId(new ObjectId(id)) } })
-            .Lookup("comments", "_id", "PostId", "Comments")
-            .AppendStage<Post>(
-                new BsonDocument{
-                    {
-                        "$addFields", new BsonDocument{
-                            {
-                                "Comments", new BsonDocument{
-                                    {"$filter", new BsonDocument{
-                                        {"input","$Comments"},
-                                        {"as","item"},
-                                        {"cond",new BsonDocument{
-                                            {"$eq",new BsonArray{"$$item.ParentCommentId",BsonNull.Value}}
-                                        }}
-                                    }}
-                            }
-                            }
-                        }
-                    }
-                }
-            ).FirstOrDefaultAsync();
+            Aggregate(pipeline)
+            .ToListAsync();
 
         public async Task InsertAsync(Post post) => await _postsCollection.InsertOneAsync(post);
         public async Task UpdateAsync(string id, Post post) => await _postsCollection.FindOneAndReplaceAsync(p => p.Id == id, post);
